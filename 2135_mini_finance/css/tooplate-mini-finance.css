@@ -10,8 +10,8 @@ https://www.tooplate.com/view/2135-mini-finance
   CUSTOM PROPERTIES ( VARIABLES )             
 -----------------------------------------*/
 :root {
-  --white-color:                  #ffffff;
-  --primary-color:                #E63946;
+  --white-color:                  #f2613d;
+  --primary-color:                #efbcc0;
   --secondary-color:              #F1FAEE;
   --section-bg-color:             #ececec;
   --primary-bg-color:             #E63946;
@@ -19,7 +19,7 @@ https://www.tooplate.com/view/2135-mini-finance
   --custom-btn-bg-hover-color:    #1D3557;
   --heading-color:                #1D3557;
   --dark-color:                   #000000;
-  --p-color:                      #717275;
+  --p-color:                      #ffffff;
   --border-color:                 #e0e0e5;
   --link-hover-color:             #E63946;
 
@@ -444,7 +444,7 @@ strong {
 
 .dropdown .dropdown-item {
   border-radius: var(--border-radius-small);
-  color: var(--p-color);
+  color: var(--dark-color);
   font-size: var(--menu-font-size);
   font-weight: var(--font-weight-light);
   display: inline-block;
