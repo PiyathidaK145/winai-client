@@ -20,7 +20,7 @@
 <body>
     <header class="navbar sticky-top flex-md-nowrap">
         <div class="col-md-3 col-lg-3 me-0 px-3 fs-6">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.php">
                 <i class="bi-box"></i>
                 Winai's Shabu
             </a>

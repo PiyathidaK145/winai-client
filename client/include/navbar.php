@@ -2,13 +2,13 @@
     <div class="position-sticky py-4 px-3 sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="index.php">
                 <span><i class="fa-solid fa-house me-2"></i> ภาพรวม</span> <!-- หน้าสถิติ -->
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="table_order_list.php">
                 <span><i class="fa-solid fa-list me-2"></i> รายการอาหารแต่ละโต๊ะ</span> <!-- หน้ารายการอาหารแต่ละโต๊ะ -->
                 </a>
             </li>
