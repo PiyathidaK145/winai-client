@@ -1,10 +1,11 @@
 <?php include 'include/header.php'; ?>
+
 <div class="container-fluid">
     <div class="row">
         <main class="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
             <div class="title-group mb-3">
-                <!--<h1 class="h2 mb-0">Overview</h1>
-                <small class="text-muted">Hello Thomas, welcome back!</small>
+                <h1 class="h2 mb-0">ภาพรวม</h1>
+                <!-- <small class="text-muted">Hello Thomas, welcome back!</small>
                 <div class="row my-4">
                     <div class="col-lg-7 col-12">
                         <div class="custom-block custom-block-balance">
@@ -304,14 +305,14 @@
                                 </a>
                             </div>
                         </div>
-
-                    </div>
-                </div>
+                    </div>-->
+                </div> 
+                <?php include 'include/footer.php'; ?>
             </div>
         </main>
     </div>
-</div> -->
-<?php include 'include/footer.php'; ?>
+</div> 
+
 
 <!-- JAVASCRIPT -->
 <!-- <script type="text/javascript">

@@ -9,7 +9,7 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="table_order_list.php">
-                <span><i class="fa-solid fa-list me-2"></i> รายการอาหารแต่ละโต๊ะ</span> <!-- หน้ารายการอาหารแต่ละโต๊ะ -->
+                <span><i class="fa-solid fa-list me-2"></i> รายการอาหารอาหารแต่ละโต๊ะ</span> <!-- หน้ารายการอาหารแต่ละโต๊ะ -->
                 </a>
             </li>
 
@@ -23,7 +23,7 @@
 
             <div class="collapse" id="collapseSale" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav flex-column">
-                    <a class="nav-link" href="#">รายวัน</a>
+                    <a class="nav-link" href="daily_sales.php">รายวัน</a>
                     <a class="nav-link" href="#">รายสัปดาห์</a>
                     <a class="nav-link" href="#">รายเดือน</a>
                 </nav>
