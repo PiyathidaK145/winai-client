@@ -6,20 +6,16 @@ include 'include/header.php';
     <div class="row">
         <main class="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
             <div class="title-group mb-3"></div>
-            <div class="container mt-5">
-                <h1 class="text-center mb-4">Table Order List</h1>
+                <h1 class="h2 mb-0">รายการอาหารแต่ละโต๊ะ</h1>
 
                 <!-- Table Selection Dropdown -->
                 <div class="card mb-4 p-3">
-                    <label for="tableSelect" class="form-label">Select Table:</label>
+                    <label for="tableSelect" class="form-label">เลือกโต๊ะ:</label>
                     <select id="tableSelect" class="form-select" onchange="filterTable()">
-                        <option value="all">All Categories</option>
-                        <?php
-                        // Generate table numbers dynamically
-                        for ($i = 1; $i <= 20; $i++) {
-                            echo "<option value='table-$i'>Table $i</option>";
-                        }
-                        ?>
+                        <option value="all">All Tables</option>
+                        <?php for ($i = 1; $i <= 20; $i++): ?>
+                            <option value="table-<?php echo $i; ?>">Table <?php echo $i; ?></option>
+                        <?php endfor; ?>
                     </select>
                 </div>
 
@@ -32,7 +28,6 @@ include 'include/header.php';
                                 <th>Order ID</th>
                                 <th>Item Name</th>
                                 <th>Quantity</th>
-                                <th>Price</th>
                                 <th>Order Time</th>
                                 <th>Status</th>
                                 <th>Table Number</th>
@@ -40,26 +35,25 @@ include 'include/header.php';
                         </thead>
                         <tbody id="orderTableBody">
                             <?php
-                            // Sample data for demonstration
                             $sampleData = [
-                                [1, 'ORD001', 'Fried Rice', 2, '$10', '12:00 PM', 'Preparing', 'Table 1'], // เดี๋ยวค่อยเปลี่ยน
-                                [2, 'ORD002', 'Chicken Soup', 1, '$8', '12:05 PM', 'Delivered', 'Table 2'],
-                                [3, 'ORD003', 'Pasta', 3, '$15', '12:10 PM', 'Preparing', 'Table 1'],
-                                [4, 'ORD004', 'Steak', 1, '$25', '12:15 PM', 'Pending', 'Table 3'],
-                                [5, 'ORD005', 'Salad', 2, '$12', '12:20 PM', 'Delivered', 'Table 2'],
+                                ['1', 'O001', 'น้ำดำ', 2, '2024-12-24 12:00:00', 'Served', 'table-1'],
+                                ['2', 'O002', 'ต้มยำ', 1, '2024-12-24 12:05:00', 'Preparing', 'table-2'],
+                                ['3', 'O003', 'น้ำใส', 3, '2024-12-24 12:10:00', 'Pending', 'table-3'],
+                                ['4', 'O004', 'หม่าล่า', 4, '2024-12-24 12:15:00', 'Served', 'table-4'],
+                                ['5', 'O005', 'เนื้อออสเตเรีย', 2, '2024-12-24 12:20:00', 'Preparing', 'table-1'],
+                                ['6', 'O006', 'เนื้อวากิว', 1, '2024-12-24 12:25:00', 'Pending', 'table-6'],
+                                ['7', 'O007', 'ผักกาดขาว', 3, '2024-12-24 12:30:00', 'Served', 'table-7'],
                             ];
 
-                            // Populate table with sample data
                             foreach ($sampleData as $row) {
-                                echo "<tr class='table-" . strtolower(str_replace(' ', '-', $row[7])) . "'>";
-                                echo "<td>{$row[0]}</td>";
-                                echo "<td>{$row[1]}</td>";
-                                echo "<td>{$row[2]}</td>";
-                                echo "<td>{$row[3]}</td>";
-                                echo "<td>{$row[4]}</td>";
-                                echo "<td>{$row[5]}</td>";
-                                echo "<td>{$row[6]}</td>";
-                                echo "<td>{$row[7]}</td>";
+                                echo "<tr class='{$row[6]}'>";
+                                echo "<td>{$row[0]}</td>"; // #
+                                echo "<td>{$row[1]}</td>"; // Order ID
+                                echo "<td>{$row[2]}</td>"; // Item Name
+                                echo "<td>{$row[3]}</td>"; // Quantity
+                                echo "<td>{$row[4]}</td>"; // Order Time
+                                echo "<td>{$row[5]}</td>"; // Status
+                                echo "<td>" . ucfirst(str_replace('table-', 'Table ', $row[6])) . "</td>"; // Table Number
                                 echo "</tr>";
                             }
                             ?>
@@ -76,7 +70,7 @@ include 'include/header.php';
                     let visibleRowCount = 0;
 
                     rows.forEach(row => {
-                        if (selectedTable === 'all' || row.classList.contains(selectedTable)) {
+                        if (selectedTable === 'all' || row.classList.contains(selectedTable.toLowerCase())) {
                             row.style.display = '';
                             visibleRowCount++;
                         } else {
@@ -84,14 +78,29 @@ include 'include/header.php';
                         }
                     });
 
-                    // Show or hide "No data" message
                     const noDataMessage = document.getElementById('noDataMessage');
-                    if (visibleRowCount === 0) {
-                        noDataMessage.style.display = 'block';
-                    } else {
-                        noDataMessage.style.display = 'none';
-                    }
+                    noDataMessage.style.display = visibleRowCount === 0 ? 'block' : 'none';
+
+                    updateRowNumbers();
                 }
+
+                function updateRowNumbers() {
+                    const rows = document.querySelectorAll('#orderTableBody tr');
+                    let currentIndex = 1;
+
+                    rows.forEach(row => {
+                        if (row.style.display !== 'none') {
+                            const indexCell = row.querySelector('td:first-child');
+                            if (indexCell) {
+                                indexCell.textContent = currentIndex++;
+                            }
+                        }
+                    });
+                }
+
+                document.addEventListener('DOMContentLoaded', () => {
+                    updateRowNumbers();
+                });
             </script>
 
             <script src="js/bootstrap.bundle.min.js"></script>

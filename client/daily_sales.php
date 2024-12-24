@@ -29,8 +29,7 @@ $sampleData = [
     <div class="row">
         <main class="main-wrapper col-md-9 ms-sm-auto py-4 col-lg-9 px-md-4 border-start">
             <div class="title-group mb-3"></div>
-            <div class="container mt-5">
-                <h1 class="text-center mb-4">รายงานยอดขายประจำวัน</h1>
+                <h1 class="h2 mb-0">รายงานยอดขายประจำวัน</h1>
 
                 <!-- Date Selection -->
                 <div class="card mb-4 p-3">
