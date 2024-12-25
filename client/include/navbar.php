@@ -62,8 +62,8 @@
 
                 <div class="collapse" id="collapsePromotion" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav flex-column">
-                        <a class="nav-link" href="#">รายการโปรโมชัน</a>
-                        <a class="nav-link" href="#">เพิ่มโปรโมชัน</a>
+                        <a class="nav-link" href="Promotion.php">รายการโปรโมชัน</a>
+                        <a class="nav-link" href="Add_promotion.php">เพิ่มโปรโมชัน</a>
                     </nav>
                 </div>
 
@@ -77,8 +77,8 @@
 
                 <div class="collapse" id="collapsePackage" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav flex-column">
-                        <a class="nav-link" href="#">รายการแพ็คเกจ</a>
-                        <a class="nav-link" href="#">เพิ่มแพ็คเกจ</a>
+                        <a class="nav-link" href="Package.php">รายการแพ็คเกจ</a>
+                        <a class="nav-link" href="Add_Package.php">เพิ่มแพ็คเกจ</a>
                     </nav>
                 </div>
 
@@ -92,8 +92,8 @@
 
                 <div class="collapse" id="collapseCategory" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav flex-column">
-                        <a class="nav-link" href="#">รายการประเภทอาหาร</a>
-                        <a class="nav-link" href="#">เพิ่มประเภทอาหาร</a>
+                        <a class="nav-link" href="Categories.php">รายการประเภทอาหาร</a>
+                        <a class="nav-link" href="Edit_categories.php">เพิ่มประเภทอาหาร</a>
                     </nav>
                 </div>
 
@@ -122,8 +122,8 @@
 
                 <div class="collapse" id="collapseStaff" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav flex-column">
-                        <a class="nav-link" href="#">รายการพนักงาน</a>
-                        <a class="nav-link" href="#">เพิ่มพนักงาน</a>
+                        <a class="nav-link" href="Staff.php">รายการพนักงาน</a>
+                        <a class="nav-link" href="Add_Staff.php">เพิ่มพนักงาน</a>
                     </nav>
                 </div>
 

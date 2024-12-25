@@ -18,12 +18,16 @@ $categories = [
 
 // Sample data for demonstration
 $sampleData = [
-    ['C001', 'John Doe', 'Yes', '45 min', [1, 0, 0, 0, 2, 0, 1, 1, 0, 0, 2, 0, 1, 1, 0, 0], '80', 'Cash', '2024-12-23 12:00:00', 'Table 1'],
-    ['C002', 'Jane Smith', 'No', '30 min', [0, 1, 0, 0, 0, 2, 1, 0, 1, 1, 0, 2, 1, 0, 1, 1], '100', 'Credit Card', '2024-12-24 12:30:00', 'Table 2'],
-    ['C003', 'James Bond', 'Yes', '60 min', [0, 0, 0, 1, 1, 1, 1, 2, 1, 0, 1, 1, 1, 2, 1, 0], '80', 'Mobile Payment', '2024-12-24 1:00:00', 'Table 3'],
-    ['C004', 'Joh Dean', 'Yes', '45 min', [1, 0, 0, 0, 2, 0, 1, 1, 0, 0, 2, 0, 1, 1, 0, 0], '80', 'Cash', '2024-12-23 12:00:00', 'Table 1'],
-    ['C005', 'Jimmy Sweet', 'No', '30 min', [0, 1, 0, 0, 0, 2, 1, 0, 1, 1, 0, 2, 1, 0, 1, 1], '100', 'Credit Card', '2024-12-24 12:30:00', 'Table 2'],
-    ['C006', 'Juria Rose', 'Yes', '60 min', [0, 0, 0, 1, 1, 1, 1, 2, 1, 0, 1, 1, 1, 2, 1, 0], '80', 'Mobile Payment', '2024-12-24 1:00:00', 'Table 3']
+    ['C001', 'สมชาย ใจดี', 'ชาย', 'ใช่', '45 นาที', [1, 0, 0, 1, 2, 0, 1, 1, 0, 0, 1, 0, 1, 1, 0, 1], 'เนื้อหมู', '80', 'เงินสด', '2024-12-23 12:00:00'],
+    ['C002', 'สมหญิง สวยงาม', 'หญิง', 'ไม่ใช่', '30 นาที', [0, 1, 0, 0, 1, 2, 1, 0, 1, 1, 0, 2, 1, 0, 0, 1], 'ทะเล', '100', 'บัตรเครดิต', '2024-12-24 12:30:00'],
+    ['C003', 'เจมส์ บอนด์', 'ชาย', 'ใช่', '60 นาที', [0, 0, 0, 1, 1, 1, 1, 2, 1, 0, 0, 1, 1, 2, 1, 0], 'เนื้อวัว', '120', 'โอนผ่านมือถือ', '2024-12-24 13:00:00'],
+    ['C004', 'สมหญิง จิตดี', 'หญิง', 'ใช่', '50 นาที', [1, 0, 1, 0, 2, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1], 'รวม', '140', 'เงินสด', '2024-12-23 14:30:00'],
+    ['C005', 'สมชาย ขยันดี', 'ชาย', 'ไม่ใช่', '35 นาที', [0, 1, 1, 0, 0, 2, 1, 0, 1, 1, 1, 2, 0, 0, 1, 1], 'มังสาวิรัติ', '110', 'บัตรเครดิต', '2024-12-24 11:30:00'],
+    ['C006', 'จุฬา รักษ์สิ่งแวดล้อม', 'หญิง', 'ใช่', '60 นาที', [0, 1, 0, 1, 1, 1, 1, 2, 0, 0, 1, 1, 1, 2, 1, 1], 'ทะเล', '150', 'โอนผ่านมือถือ', '2024-12-24 15:00:00'],
+    ['C007', 'สมศักดิ์ มั่นคง', 'ชาย', 'ใช่', '55 นาที', [1, 0, 0, 0, 2, 0, 1, 1, 0, 1, 2, 1, 0, 1, 0, 0], 'เนื้อหมู', '130', 'เงินสด', '2024-12-25 13:45:00'],
+    ['C008', 'สมศรี ทองแท้', 'หญิง', 'ไม่ใช่', '25 นาที', [0, 1, 0, 0, 0, 2, 1, 0, 0, 1, 0, 2, 1, 0, 0, 1], 'ผลไม้', '90', 'บัตรเครดิต', '2024-12-26 10:15:00'],
+    ['C009', 'วิชัย บุญส่ง', 'ชาย', 'ใช่', '40 นาที', [1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 2, 1, 0, 1, 1, 0], 'เนื้อวัว', '150', 'เงินสด', '2024-12-27 18:20:00'],
+    ['C010', 'สมปราชญ์ คงมั่น', 'ชาย', 'ไม่ใช่', '20 นาที', [0, 1, 1, 1, 0, 2, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1], 'มังสาวิรัติ', '100', 'บัตรเครดิต', '2024-12-28 14:10:00']
 ];
 
 ?>
@@ -37,7 +41,7 @@ $sampleData = [
             <div class="mb-3 d-flex justify-content-end">
                 <button class="btn btn-dark me-2">ส่งออกไฟล์ Excel</button>
                 <button class="btn btn-dark me-2">ส่งออกไฟล์ CSV</button>
-                <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#filterModal">การกรอง</button>
+                <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#filterModal">การกรอง</button>
             </div>
 
 
@@ -223,7 +227,6 @@ $sampleData = [
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
                             <button type="button" class="btn btn-primary" onclick="applyFilters()">ยืนยัน</button>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -281,69 +284,107 @@ $sampleData = [
                 <table class="table table-bordered table-striped">
                     <thead class="table--bs-secondary-bg">
                         <tr id="tableHeader">
-                            <th>#</th>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Member</th>
-                            <th>Time record</th>
-                            <?php foreach ($categories["all"] as $menu): ?>
+                            <th>ลำดับ</th>
+                            <th>รหัสลูกค้า</th>
+                            <th>ชื่อ</th>
+                            <th>เพศ</th>
+                            <th>เป็นสมาชิก</th>
+                            <th>เวลาที่ใช้ในการทาน</th>
+                            <?php foreach ($categories["เมนูทั้งหมด"] as $menu): ?>
                                 <th data-category="<?php echo $menu; ?>"><?php echo $menu; ?></th>
                             <?php endforeach; ?>
-                            <th>Price</th>
-                            <th>Channel</th>
-                            <th>Time Stamp</th>
-                            <th>Table</th>
+                            <th>แพ็คเกจ</th>
+                            <th>ราคา</th>
+                            <th>ช่องทางการชำระเงิน</th>
+                            <th>ประทับเวลา</th>
                         </tr>
                     </thead>
                     <tbody id="salesTableBody">
                         <?php foreach ($sampleData as $row): ?>
                             <tr class="table-<?php echo strtolower(str_replace(' ', '-', str_replace('Table ', '', $row[8]))); ?>">
-                                <td class="row-index"></td>
-                                <td><?php echo $row[0]; ?></td>
-                                <td><?php echo $row[1]; ?></td>
-                                <td><?php echo $row[2]; ?></td>
-                                <td><?php echo $row[3]; ?></td> <!-- Time record -->
-                                <?php foreach ($row[4] as $quantity): ?>
-                                    <td><?php echo $quantity; ?></td>
-                                <?php endforeach; ?>
-                                <td><?php echo $row[5]; ?></td> <!-- Price -->
-                                <td><?php echo $row[6]; ?></td> <!-- Channel -->
-                                <td><?php echo $row[7]; ?></td> <!-- Time Stamp -->
-                                <td><?php echo $row[8]; ?></td> <!-- Table -->
-                            </tr>
+                                <td class="row-index"></td> <!-- ลำดับ -->
+                                <td><?php echo $row[0]; ?></td> <!-- รหัสลูกค้า -->
+                                <td><?php echo $row[1]; ?></td> <!-- ชื่อ -->
+                                <td><?php echo $row[2]; ?></td> <!-- เพศ -->
+                                <td><?php echo $row[3]; ?></td> <!-- เป็นสมาชิก -->
+                                <td><?php echo $row[4]; ?></td> <!-- เวลาที่ใช้ในการทาน -->
 
+                                <?php foreach ($categories["เมนูทั้งหมด"] as $menu): ?> <!-- เมนู -->
+                                    <td><?php
+                                        // Check if the menu exists in the row data
+                                        $menuIndex = array_search($menu, $categories["เมนูทั้งหมด"]);
+                                        echo isset($row[5][$menuIndex]) ? $row[5][$menuIndex] : 0;
+                                        ?></td>
+                                <?php endforeach; ?>
+
+                                <td><?php echo $row[6]; ?></td> <!-- แพ็คเกจ -->
+                                <td><?php echo $row[7]; ?></td> <!-- ราคา -->
+                                <td><?php echo $row[8]; ?></td> <!-- ช่องทางการชำระเงิน -->
+                                <td><?php echo $row[9]; ?></td> <!-- ประทับเวลา -->
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-
                 <p id="noDataMessage" class="no-data" style="display: none;">No data available for this table.</p>
             </div>
-
-
     </div>
 
     <?php include 'include/footer.php'; ?>
 
     <script>
         const categories = <?php echo json_encode($categories); ?>;
-        let activeCategories = ["all"];
+        let activeCategories = ["เมนูทั้งหมด"]; // Default to all categories
+        let filters = {
+            date: null,
+            timeRange: {
+                start: null,
+                end: null
+            },
+            gender: [],
+            age: [],
+            religion: [],
+            member: [],
+            table: [],
+        };
+
+        // Helper functions to get selected filter values
+        function getCheckedValues(selector) {
+            return Array.from(document.querySelectorAll(selector))
+                .filter(checkbox => checkbox.checked)
+                .map(checkbox => checkbox.value);
+        }
 
         function applyFilters() {
-            // Collect all filters and apply them
-            const selectedDate = document.getElementById('dateSelect').value;
-            const startTime = document.getElementById('startTime').value;
-            const endTime = document.getElementById('endTime').value;
-            const gender = document.getElementById('genderSelect').value;
-            const age = document.getElementById('ageSelect').value;
-            const religion = document.getElementById('religionSelect').value;
-            const member = document.getElementById('memberSelect').value;
-            const table = document.getElementById('tableSelect').value;
+            console.log("applyFilters called");
+
+            // ตรวจสอบว่ามีค่าในแต่ละ input หรือไม่
+            filters.date = document.getElementById('dateSelect')?.value || null;
+            filters.timeRange.start = document.getElementById('startTime')?.value || null;
+            filters.timeRange.end = document.getElementById('endTime')?.value || null;
+            filters.gender = getCheckedValues('.genderCheckbox');
+            filters.age = getCheckedValues('.ageCheckbox');
+            filters.religion = getCheckedValues('.religionCheckbox');
+            filters.member = getCheckedValues('.memberCheckbox');
+            filters.table = getCheckedValues('.tableCheckbox');
+            activeCategories = getCheckedValues('.menuCheckbox');
+
+            // หากไม่มี activeCategories ให้ใช้ค่าเริ่มต้น
+            if (activeCategories.length === 0) {
+                activeCategories = ["เมนูทั้งหมด"];
+            }
+
+            // Debugging log
+            console.log("Filters:", filters);
+            console.log("Active Categories:", activeCategories);
 
             filterData();
 
+            // ปิด modal
             const filterModal = document.getElementById('filterModal');
-            const modalInstance = bootstrap.Modal.getInstance(filterModal);
-            modalInstance.hide();
+            if (filterModal) {
+                const modalInstance = bootstrap.Modal.getInstance(filterModal);
+                modalInstance?.hide();
+            }
         }
 
         function toggleCategory(selectedCategory) {
@@ -354,7 +395,7 @@ $sampleData = [
                 if (activeCategories.includes(selectedCategory)) {
                     activeCategories = activeCategories.filter(cat => cat !== selectedCategory); // Remove if already selected
                 } else {
-                    if (activeCategories.includes("all")) {
+                    if (activeCategories.includes("ทั้งหมด")) {
                         activeCategories = [selectedCategory]; // Replace "ทั้งหมด" with specific categories
                     } else {
                         activeCategories.push(selectedCategory); // Add new category
@@ -397,70 +438,86 @@ $sampleData = [
         }
 
 
-        function filterData(selectedCategory = null) {
-            const selectedTable = document.getElementById('tableSelect').value; //เลือก Table
-            const selectedDate = document.getElementById('dateSelect').value; //เลือกวันที่
-            const rows = document.querySelectorAll('#salesTableBody tr');
-            const allColumns = document.querySelectorAll('th[data-category]');
-            const staticColumnsCount = 5; // Number of static columns (e.g., #, ID, Name, Member, Time record)
+        function filterData() {
+            console.log("Active Categories:", activeCategories); // Debugging
+            console.log("Categories Object:", categories); // Debugging
+
+            // ตรวจสอบว่า activeCategories มี category ที่ถูกต้อง
+            const validCategories = activeCategories.filter(category => {
+                if (!categories[category]) {
+                    console.error(`Category '${category}' does not exist in categories.`);
+                    return false;
+                }
+                if (!Array.isArray(categories[category])) {
+                    console.error(`Category '${category}' is not an array.`);
+                    return false;
+                }
+                return true;
+            });
+
+            if (validCategories.length === 0) {
+                console.error("No valid categories found for filtering.");
+                return;
+            }
 
             let selectedItems = [];
-            if (activeCategories.includes("all")) {
-                selectedItems = categories["all"];
+            if (validCategories.includes("เมนูทั้งหมด")) {
+                selectedItems = categories["เมนูทั้งหมด"];
             } else {
-                activeCategories.forEach(category => {
-                    selectedItems = [...new Set([...selectedItems, ...categories[category]])]; // Combine items without duplicates
+                validCategories.forEach(category => {
+                    selectedItems = [...new Set([...selectedItems, ...categories[category]])];
                 });
             }
+
+            const rows = document.querySelectorAll('#salesTableBody tr');
+            const allColumns = document.querySelectorAll('th[data-category]');
+            const staticColumnsCount = 5; // จำนวนคอลัมน์ที่คงที่
+
             let visibleRowCount = 0;
 
-            // กรองแถว (Rows) ตาม Table และ วันที่
             rows.forEach(row => {
-                const matchesTable = (selectedTable === 'เลือกทั้งหมด' || row.classList.contains(selectedTable)); // ตรวจสอบโต๊ะ
-                const timeStampCell = row.children[row.children.length - 2]; // คอลัมน์ "Time Stamp"
-                // ตรวจสอบและแปลงค่า Time Stamp เป็นวันที่เท่านั้น (YYYY-MM-DD)
-                const rowDate = new Date(timeStampCell.textContent).toISOString().split('T')[0];
-                const matchesDate = (selectedDate === '' || rowDate === selectedDate); // เปรียบเทียบวันที่
+                const cells = row.children;
+                const table = cells[1]?.textContent.trim();
+                const gender = cells[3]?.textContent.trim();
+                const member = cells[4]?.textContent.trim();
+                const timeStamp = cells[9]?.textContent.trim();
+                const rowDate = timeStamp ? new Date(timeStamp).toISOString().split('T')[0] : '';
+                const rowTime = timeStamp ? timeStamp.split(' ')[1] : '';
+                const menuQuantities = Array.from(cells).slice(staticColumnsCount, cells.length - 3);
 
-                if (matchesTable && matchesDate) {
-                    row.style.display = ''; // แสดงแถว
+                const matchesTable = filters.table.length === 0 || filters.table.includes(table);
+                const matchesDate = !filters.date || rowDate === filters.date;
+                const matchesTime = (!filters.timeRange.start || rowTime >= filters.timeRange.start) &&
+                    (!filters.timeRange.end || rowTime <= filters.timeRange.end);
+                const matchesGender = filters.gender.length === 0 || filters.gender.includes(gender);
+                const matchesMember = filters.member.length === 0 || filters.member.includes(member);
+                const matchesMenus = menuQuantities.some((cell, index) => {
+                    return selectedItems.includes(allColumns[index + staticColumnsCount]?.textContent.trim()) && cell.textContent !== '0';
+                });
+
+                const matchesAll = matchesTable && matchesDate && matchesTime && matchesGender && matchesMember && matchesMenus;
+
+                if (matchesAll) {
+                    row.style.display = '';
                     visibleRowCount++;
                 } else {
-                    row.style.display = 'none'; // ซ่อนแถว
+                    row.style.display = 'none';
                 }
             });
 
-            // Show or hide columns by category (excluding static columns)
-            allColumns.forEach((column, columnIndex) => {
-                const isVisible = selectedItems.includes(column.textContent);
-                column.style.display = isVisible ? '' : 'none';
+            console.log("Visible Rows Count:", visibleRowCount);
 
-                rows.forEach(row => {
-                    const cell = row.children[columnIndex + staticColumnsCount]; // Offset by staticColumnsCount to skip static columns
-                    if (cell) cell.style.display = isVisible ? '' : 'none';
-                });
-            });
-
-            // Ensure static columns are always visible
-            const staticColumns = document.querySelectorAll('th:nth-child(-n+' + staticColumnsCount + ')');
-            staticColumns.forEach(column => {
-                column.style.display = ''; // Ensure static columns are visible
-            });
-
-            rows.forEach(row => {
-                for (let i = 0; i < staticColumnsCount; i++) {
-                    const cell = row.children[i];
-                    if (cell) cell.style.display = ''; // Ensure static cells are visible
-                }
-            });
-
-            // Show or hide "No data" message
             const noDataMessage = document.getElementById('noDataMessage');
             noDataMessage.style.display = visibleRowCount === 0 ? 'block' : 'none';
 
-            updateRowNumbers();
-            calculateTotalPrice();
-            updateCustomerCount();
+            if (visibleRowCount === 0) {
+                document.getElementById('totalPriceDisplay').textContent = `0.00 บาท`;
+                document.getElementById('totalCustomersDisplay').textContent = `0 คน`;
+            } else {
+                updateRowNumbers();
+                calculateTotalPrice();
+                updateCustomerCount();
+            }
         }
 
 
@@ -469,48 +526,68 @@ $sampleData = [
             let currentIndex = 1;
 
             rows.forEach(row => {
+                const indexCell = row.querySelector('.row-index');
                 if (row.style.display !== 'none') {
-                    const indexCell = row.querySelector('.row-index');
-                    if (indexCell) indexCell.textContent = currentIndex++;
+                    indexCell.textContent = currentIndex++;
+                } else {
+                    indexCell.textContent = '';
                 }
             });
         }
 
         function calculateTotalPrice() {
-            const rows = document.querySelectorAll('#salesTableBody tr');
-            let totalPrice = 0;
+    const rows = document.querySelectorAll('#salesTableBody tr');
+    let totalPrice = 0;
 
-            rows.forEach(row => {
-                if (row.style.display !== 'none') {
-                    const priceCell = row.querySelector('td:nth-last-child(4)');
-                    const price = parseFloat(priceCell.textContent.replace('$', '')) || 0;
-                    totalPrice += price;
-                }
-            });
-
-            document.getElementById('totalPriceDisplay').textContent = `$${totalPrice.toFixed(2)}`;
+    rows.forEach(row => {
+        if (row.style.display !== 'none') {
+            const priceCell = row.querySelector('td:nth-last-child(4)');
+            const price = parseFloat(priceCell?.textContent.replace('บาท', '').trim()) || 0;
+            totalPrice += price;
         }
+    });
 
-        function updateCustomerCount() {
-            const rows = document.querySelectorAll('#salesTableBody tr');
-            let customerCount = 0;
+    document.getElementById('totalPriceDisplay').textContent = `${totalPrice.toFixed(2)} บาท`;
+}
 
-            rows.forEach(row => {
-                if (row.style.display !== 'none') {
-                    customerCount++;
-                }
-            });
+function updateCustomerCount() {
+    const rows = document.querySelectorAll('#salesTableBody tr');
+    const visibleCount = Array.from(rows).filter(row => row.style.display !== 'none').length;
+    document.getElementById('totalCustomersDisplay').textContent = `${visibleCount} คน`;
+}
 
-            // Update the Total Customers in the input box
-            document.getElementById('totalCustomersDisplay').textContent = customerCount;
-        }
+        document.addEventListener("DOMContentLoaded", () => {
+            // Select the 'selectAllMenus' checkbox
+            const selectAllMenus = document.getElementById('selectAllMenus');
 
-        document.addEventListener('DOMContentLoaded', () => {
-            updateCategoryButtons();
-            updateRowNumbers();
-            calculateTotalPrice();
-            updateCustomerCount();
+            // Check if the element exists before adding an event listener
+            if (selectAllMenus) {
+                selectAllMenus.addEventListener('change', toggleAllMenus);
+            } else {
+                console.error("Element with ID 'selectAllMenus' not found.");
+            }
+
+            // Select all table checkboxes
+            const tableCheckboxes = document.querySelectorAll('.tableCheckbox');
+            if (tableCheckboxes.length > 0) {
+                tableCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', applyFilters);
+                });
+            } else {
+                console.error("No elements with class 'tableCheckbox' found.");
+            }
+
+            // Select all menu checkboxes
+            const menuCheckboxes = document.querySelectorAll('.menuCheckbox');
+            if (menuCheckboxes.length > 0) {
+                menuCheckboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', applyFilters);
+                });
+            } else {
+                console.error("No elements with class 'menuCheckbox' found.");
+            }
         });
+
 
         const dateList = [];
 
@@ -518,12 +595,14 @@ $sampleData = [
             const dateInput = document.getElementById('dateSelect');
             const selectedDate = dateInput.value;
 
-            if (selectedDate) {
+            if (selectedDate && !dateList.includes(selectedDate)) { // Prevent duplicates
                 dateList.push(selectedDate);
                 updateDateList();
-                dateInput.value = ''; // ล้างค่า input หลังจากเพิ่ม
-            } else {
+                dateInput.value = ''; // Clear input
+            } else if (!selectedDate) {
                 alert("กรุณาเลือกวันที่ก่อน");
+            } else {
+                alert("วันที่นี้ได้ถูกเพิ่มแล้ว");
             }
         }
 
@@ -601,13 +680,6 @@ $sampleData = [
             updateTimeList(); // อัปเดตรายการ
         }
 
-        function toggleAllCheckboxes(selectAllCheckbox) {
-            const checkboxes = document.querySelectorAll('.genderCheckbox');
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = selectAllCheckbox.checked; // ตั้งค่า checkbox อื่นๆ ตามสถานะของ checkbox "ทั้งหมด"
-            });
-        }
-
         function updateSelectAll(checkboxClass, selectAllId) {
             const checkboxes = document.querySelectorAll(checkboxClass);
             const selectAllCheckbox = document.getElementById(selectAllId);
@@ -617,9 +689,15 @@ $sampleData = [
         function toggleAllCheckboxes(selectAllCheckbox, checkboxClass) {
             const checkboxes = document.querySelectorAll(checkboxClass);
             checkboxes.forEach(checkbox => {
-                checkbox.checked = selectAllCheckbox.checked;
+                checkbox.checked = selectAllCheckbox.checked; // ตั้งค่า checkbox อื่นๆ ตามสถานะของ checkbox "ทั้งหมด"
             });
+
+            // อัปเดตสถานะ filters หรือ activeCategories
+            if (checkboxClass.includes('menuCheckbox')) {
+                applyFilters();
+            }
         }
+
 
         function toggleAllTables(selectAllCheckbox) {
             const tableCheckboxes = document.querySelectorAll('.tableCheckbox');
