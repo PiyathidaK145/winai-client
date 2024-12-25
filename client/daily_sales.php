@@ -6,9 +6,9 @@ header("Expires: 0");
 
 // Define menu items and categories dynamically
 $categories = [
-    "all" => ["น้ำดำ", "ต้มยำ", "น้ำใส", "หม่าล่า", "เนื้อออสเตเรีย", "เนื้อวากิว", "ผักกาดขาว", "ข้าวโพดอ่อน", "กุ้ง", "หมึก", "มาม่า", "เต้าหู้ปลา", "แอปเปิล", "แตงโม", "น้ำอัดลม", "ไอติม"],
+    "เมนูทั้งหมด" => ["น้ำดำ", "ต้มยำ", "น้ำใส", "หม่าล่า", "เนื้อออสเตรเลีย", "เนื้อวากิว", "ผักกาดขาว", "ข้าวโพดอ่อน", "กุ้ง", "หมึก", "มาม่า", "เต้าหู้ปลา", "แอปเปิล", "แตงโม", "น้ำอัดลม", "ไอติม"],
     "น้ำซุป" => ["น้ำดำ", "ต้มยำ", "น้ำใส", "หม่าล่า"],
-    "เนื้อ" => ["เนื้อออสเตเรีย", "เนื้อวากิว"],
+    "เนื้อ" => ["เนื้อออส", "เนื้อวากิว"],
     "ผัก" => ["ผักกาดขาว", "ข้าวโพดอ่อน"],
     "ทะเล" => ["กุ้ง", "หมึก"],
     "อาหารแปรรูป" => ["มาม่า", "เต้าหู้ปลา"],
@@ -35,8 +35,11 @@ $sampleData = [
             <h1 class="h2 mb-0">รายงานยอดขายรายวัน</h1>
 
             <div class="mb-3 d-flex justify-content-end">
-                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#filterModal">การกรอง</button>
+                <button class="btn btn-dark me-2">ส่งออกไฟล์ Excel</button>
+                <button class="btn btn-dark me-2">ส่งออกไฟล์ CSV</button>
+                <button class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#filterModal">การกรอง</button>
             </div>
+
 
             <!-- Filter Modal -->
             <div class="modal fade" id="filterModal" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
@@ -48,133 +51,179 @@ $sampleData = [
                         </div>
                         <div class="modal-body">
 
-                            <!-- Date Selection -->
+                            <div class="row">
+                                <!-- Date Selection -->
+                                <div class="col-md-6 mb-4">
+                                    <div class="card p-3">
+                                        <strong><label for="dateSelect" class="form-label">เลือกวันที่:</label></strong>
+                                        <input type="date" id="dateSelect" class="form-control">
+                                        <button type="button" class="btn btn-primary mt-2" onclick="addDate()">เพิ่มวันที่</button>
+                                        <div id="dateList" class="mt-3"></div>
+                                    </div>
+                                </div>
 
-                            <div class="card mb-4 p-3">
-                                <label for="dateSelect" class="form-label">เลือกวันที่:</label>
-                                <input type="date" id="dateSelect" class="form-control">
-                                <button type="button" class="btn btn-primary mt-2" onclick="addDate()">เพิ่มวันที่</button>
-                                <div id="dateList" class="mt-3"></div>
-
+                                <!-- Time Range Selection -->
+                                <div class="col-md-6 mb-4">
+                                    <div class="card p-3">
+                                        <strong><label for="startTime" class="form-label">เลือกช่วงเวลา:</label></strong>
+                                        <div class="row mb-2">
+                                            <div class="col">
+                                                <input type="time" id="startTime" class="form-control" placeholder="Start Time">
+                                            </div>
+                                            <div class="col">
+                                                <input type="time" id="endTime" class="form-control" placeholder="End Time">
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-primary" onclick="addTimeRange()">เพิ่มช่วงเวลา</button>
+                                        <div id="timeList" class="mt-3"></div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="card mb-4 p-3">
-                                <label for="startTime" class="form-label">เลือกช่วงเวลา:</label>
-                                <div class="row mb-2">
-                                    <div class="col">
-                                        <input type="time" id="startTime" class="form-control" placeholder="Start Time">
-                                    </div>
-                                    <div class="col">
-                                        <input type="time" id="endTime" class="form-control" placeholder="End Time">
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <!-- เพศ -->
+                                    <div class="card h-100 p-3">
+                                        <strong><label class="form-label">เพศ:</label></strong>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="genderselectAll" onchange="toggleAllCheckboxes(this, '.genderCheckbox')">
+                                            <label for="genderselectAll" class="form-check-label text-dark">ทั้งหมด</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="genderCheckbox form-check-input" id="male" value="ชาย" onchange="updateSelectAll('.genderCheckbox', 'genderselectAll')">
+                                            <label for="male" class="form-check-label text-dark">ชาย</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="genderCheckbox form-check-input" id="female" value="หญิง" onchange="updateSelectAll('.genderCheckbox', 'genderselectAll')">
+                                            <label for="female" class="form-check-label text-dark">หญิง</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="genderCheckbox form-check-input" id="other" value="อื่นๆ" onchange="updateSelectAll('.genderCheckbox', 'genderselectAll')">
+                                            <label for="other" class="form-check-label text-dark">อื่นๆ</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-primary" onclick="addTimeRange()">เพิ่มช่วงเวลา</button>
-                                <div id="timeList" class="mt-3"></div>
+                                <div class="col-md-3 mb-3">
+                                    <!-- ช่วงอายุ -->
+                                    <div class="card h-100 p-3">
+                                        <strong><label class="form-label">ช่วงอายุ:</label></strong>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="ageselectAll" onchange="toggleAllCheckboxes(this, '.ageCheckbox')">
+                                            <label for="ageselectAll" class="form-check-label text-dark">ทั้งหมด</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="ageCheckbox form-check-input" id="<15" value="<15" onchange="updateSelectAll('.ageCheckbox', 'ageselectAll')">
+                                            <label for="<15" class="form-check-label text-dark">น้อยกว่า 15</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="ageCheckbox form-check-input" id="15-25" value="15-25" onchange="updateSelectAll('.ageCheckbox', 'ageselectAll')">
+                                            <label for="15-25" class="form-check-label text-dark">15-25</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="ageCheckbox form-check-input" id="26-35" value="26-35" onchange="updateSelectAll('.ageCheckbox', 'ageselectAll')">
+                                            <label for="26-35" class="form-check-label text-dark">26-35</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="ageCheckbox form-check-input" id="36-45" value="36-45" onchange="updateSelectAll('.ageCheckbox', 'ageselectAll')">
+                                            <label for="36-45" class="form-check-label text-dark">36-45</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="ageCheckbox form-check-input" id="46-55" value="46-55" onchange="updateSelectAll('.ageCheckbox', 'ageselectAll')">
+                                            <label for="46-55" class="form-check-label text-dark">46-55</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="ageCheckbox form-check-input" id=">55" value=">55" onchange="updateSelectAll('.ageCheckbox', 'ageselectAll')">
+                                            <label for=">55" class="form-check-label text-dark">55 ขึ้นไป</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <!-- ศาสนา -->
+                                    <div class="card h-100 p-3">
+                                        <strong><label class="form-label">ศาสนา:</label></strong>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="religionselectAll" onchange="toggleAllCheckboxes(this, '.religionCheckbox')">
+                                            <label for="religionselectAll" class="form-check-label text-dark">ทั้งหมด</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="religionCheckbox form-check-input" id="Buddhist" value="พุทธ" onchange="updateSelectAll('.religionCheckbox', 'religionselectAll')">
+                                            <label for="Buddhist" class="form-check-label text-dark">พุทธ</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="religionCheckbox form-check-input" id="Christ" value="คริสต์" onchange="updateSelectAll('.religionCheckbox', 'religionselectAll')">
+                                            <label for="Christ" class="form-check-label text-dark">คริสต์</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="religionCheckbox form-check-input" id="Islam" value="อิสลาม" onchange="updateSelectAll('.religionCheckbox', 'religionselectAll')">
+                                            <label for="Islam" class="form-check-label text-dark">อิสลาม</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="religionCheckbox form-check-input" id="otherReligion" value="อื่นๆ" onchange="updateSelectAll('.religionCheckbox', 'religionselectAll')">
+                                            <label for="otherReligion" class="form-check-label text-dark">อื่นๆ</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <!-- สมาชิก -->
+                                    <div class="card h-100 p-3">
+                                        <strong><label class="form-label">สมาชิก:</label></strong>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="memberselectAll" onchange="toggleAllCheckboxes(this, '.memberCheckbox')">
+                                            <label for="memberselectAll" class="form-check-label text-dark">ทั้งหมด</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="memberCheckbox form-check-input" id="member" value="เป็นสมาชิก" onchange="updateSelectAll('.memberCheckbox', 'memberselectAll')">
+                                            <label for="member" class="form-check-label text-dark">เป็นสมาชิก</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="memberCheckbox form-check-input" id="notMember" value="ไม่เป็นสมาชิก" onchange="updateSelectAll('.memberCheckbox', 'memberselectAll')">
+                                            <label for="notMember" class="form-check-label text-dark">ไม่เป็นสมาชิก</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="container">
-                                <!-- เพศ -->
-                                <div class="card mb-4 p-3">
-                                    <label class="form-label">เพศ:</label>
-                                    <div>
-                                        <input type="checkbox" id="genderselectAll" onchange="toggleAllCheckboxes(this, '.genderCheckbox')">
-                                        <label for="genderselectAll">ทั้งหมด</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="genderCheckbox" id="male" value="ชาย" onchange="updateSelectAll('.genderCheckbox', 'genderselectAll')">
-                                        <label for="male">ชาย</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="genderCheckbox" id="female" value="หญิง" onchange="updateSelectAll('.genderCheckbox', 'genderselectAll')">
-                                        <label for="female">หญิง</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="genderCheckbox" id="other" value="อื่นๆ" onchange="updateSelectAll('.genderCheckbox', 'genderselectAll')">
-                                        <label for="other">อื่นๆ</label>
+                            <div class="row">
+                                <!-- "เมนูทั้งหมด" -->
+                                <div class="col-md-12 mb-3">
+                                    <div class="card p-3 h-100">
+                                        <label class="form-label fw-bold text-dark">เมนูทั้งหมด</label>
+                                        <div>
+                                            <input type="checkbox" id="selectAllMenus" class="form-check-input" onchange="toggleAllMenus()">
+                                            <label for="selectAllMenus" class="form-check-label text-dark">ทั้งหมด</label>
+                                        </div>
                                     </div>
                                 </div>
 
-                                <!-- ช่วงอายุ -->
-                                <div class="card mb-4 p-3">
-                                    <label class="form-label">ช่วงอายุ:</label>
-                                    <div>
-                                        <input type="checkbox" id="ageselectAll" onchange="toggleAllCheckboxes(this, '.ageCheckbox')">
-                                        <label for="ageselectAll">ทั้งหมด</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="ageCheckbox" id="<15" value="<15" onchange="updateSelectAll('.ageCheckbox', 'ageselectAll')">
-                                        <label for="<15">น้อยกว่า 15</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="ageCheckbox" id="15-25" value="15-25" onchange="updateSelectAll('.ageCheckbox', 'ageselectAll')">
-                                        <label for="15-25">15-25</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="ageCheckbox" id="26-35" value="26-35" onchange="updateSelectAll('.ageCheckbox', 'ageselectAll')">
-                                        <label for="26-35">26-35</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="ageCheckbox" id="36-45" value="36-45" onchange="updateSelectAll('.ageCheckbox', 'ageselectAll')">
-                                        <label for="36-45">36-45</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="ageCheckbox" id="46-55" value="46-55" onchange="updateSelectAll('.ageCheckbox', 'ageselectAll')">
-                                        <label for="46-55">46-55</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="ageCheckbox" id=">55" value=">55" onchange="updateSelectAll('.ageCheckbox', 'ageselectAll')">
-                                        <label for=">55">55 ขึ้นไป</label>
-                                    </div>
-                                </div>
+                                <!-- Categories -->
+                                <?php foreach ($categories as $category => $items): ?>
+                                    <?php if ($category !== "เมนูทั้งหมด"): ?>
+                                        <div class="col-md-3 mb-3">
+                                            <div class="card p-3 h-100">
+                                                <label class="form-label fw-bold text-dark"><?php echo ucfirst($category); ?></label>
+                                                <div>
+                                                    <input type="checkbox" id="<?php echo $category; ?>SelectAll" class="form-check-input" onchange="toggleAllCheckboxes(this, '.<?php echo $category; ?>Checkbox')">
+                                                    <label for="<?php echo $category; ?>SelectAll" class="form-check-label text-dark">ทั้งหมด</label>
+                                                </div>
+                                                <?php foreach ($items as $item): ?>
+                                                    <div>
+                                                        <input type="checkbox" class="<?php echo $category; ?>Checkbox form-check-input menuCheckbox" id="<?php echo $item; ?>" value="<?php echo $item; ?>" onchange="updateSelectAll('.<?php echo $category; ?>Checkbox', '<?php echo $category; ?>SelectAll')">
+                                                        <label for="<?php echo $item; ?>" class="form-check-label text-dark"><?php echo $item; ?></label>
+                                                    </div>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
 
-                                <!-- ศาสนา -->
-                                <div class="card mb-4 p-3">
-                                    <label class="form-label">ศาสนา:</label>
-                                    <div>
-                                        <input type="checkbox" id="religionselectAll" onchange="toggleAllCheckboxes(this, '.religionCheckbox')">
-                                        <label for="religionselectAll">ทั้งหมด</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="religionCheckbox" id="Buddhist" value="พุทธ" onchange="updateSelectAll('.religionCheckbox', 'religionselectAll')">
-                                        <label for="Buddhist">พุทธ</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="religionCheckbox" id="Christ" value="คริสต์" onchange="updateSelectAll('.religionCheckbox', 'religionselectAll')">
-                                        <label for="Christ">คริสต์</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="religionCheckbox" id="Islam" value="อิสลาม" onchange="updateSelectAll('.religionCheckbox', 'religionselectAll')">
-                                        <label for="Islam">อิสลาม</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="religionCheckbox" id="other" value="อื่นๆ" onchange="updateSelectAll('.religionCheckbox', 'religionselectAll')">
-                                        <label for="other">อื่นๆ</label>
-                                    </div>
-                                </div>
-
-                                <!-- สมาชิก -->
-                                <div class="card mb-4 p-3">
-                                    <label class="form-label">สมาชิก:</label>
-                                    <div>
-                                        <input type="checkbox" id="memberselectAll" onchange="toggleAllCheckboxes(this, '.memberCheckbox')">
-                                        <label for="memberselectAll">ทั้งหมด</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="memberCheckbox" id="member" value="เป็นสมาชิก" onchange="updateSelectAll('.memberCheckbox', 'memberselectAll')">
-                                        <label for="member">เป็นสมาชิก</label>
-                                    </div>
-                                    <div>
-                                        <input type="checkbox" class="memberCheckbox" id="notMember" value="ไม่เป็นสมาชิก" onchange="updateSelectAll('.memberCheckbox', 'memberselectAll')">
-                                        <label for="notMember">ไม่เป็นสมาชิก</label>
-                                    </div>
-                                </div>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary" onclick="applyFilters()">Apply</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                            <button type="button" class="btn btn-primary" onclick="applyFilters()">ยืนยัน</button>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -192,20 +241,39 @@ $sampleData = [
                     <?php for ($i = 1; $i <= 20; $i++): ?>
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input tableCheckbox" id="table<?php echo $i; ?>" value="โต๊ะ <?php echo $i; ?>" onchange="updateSelectedTables()">
-                            <label class="form-check-label" for="table<?php echo $i; ?>">โต๊ะ <?php echo $i; ?></label>
+                            <label class="form-check-label text-dark" for="table<?php echo $i; ?>">โต๊ะ <?php echo $i; ?></label>
                         </div>
                     <?php endfor; ?>
                 </div>
             </div>
             <p id="selectedTables" class="mb-4 text-dark">โต๊ะที่เลือก: ไม่มี</p>
 
-            <!-- Category Buttons -->
-            <div class="mb-3">
-                <?php foreach ($categories as $category => $items): ?>
-                    <button type="button" class="btn btn-secondary category-button" data-category="<?php echo $category; ?>" onclick="toggleCategory('<?php echo $category; ?>')">
-                        <?php echo ucfirst($category); ?>
-                    </button>
-                <?php endforeach; ?>
+            <!-- summary display -->
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <div class="card p-3">
+                        <label for="totalPriceDisplay" class="form-label fw-bold">ยอดขายรวมทั้งหมด:</label>
+                        <label id="totalPriceDisplay" class="form-label">0.00บาท</label>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card p-3">
+                        <label for="totalCustomersDisplay" class="form-label fw-bold">จำนวนลูกค้าทั้งหมด:</label>
+                        <label id="totalCustomersDisplay" class="form-label">0</label>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card p-3">
+                        <label for="bestSellingPackage" class="form-label fw-bold">แพ็คเกจที่ขายดีที่สุด:</label>
+                        <label id="bestSellingPackage" class="form-label">#</label>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card p-3">
+                        <label for="topRevenueTable" class="form-label fw-bold">โต๊ะที่สร้างรายได้สูงสุด:</label>
+                        <label id="topRevenueTable" class="form-label">#</label>
+                    </div>
+                </div>
             </div>
 
             <!-- Table Display -->
@@ -251,18 +319,7 @@ $sampleData = [
                 <p id="noDataMessage" class="no-data" style="display: none;">No data available for this table.</p>
             </div>
 
-            <div class="card mb-4 p-3">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div>
-                        <label for="totalPriceDisplay" class="form-label fw-bold">ราคารวม:</label>
-                        <label id="totalPriceDisplay" class="form-label">0.00บาท</label>
-                    </div>
-                    <div>
-                        <label for="totalCustomersDisplay" class="form-label fw-bold">จำนวนลูกค้าทั้งหมด:</label>
-                        <label id="totalCustomersDisplay" class="form-label">0</label>
-                    </div>
-                </div>
-            </div>
+
     </div>
 
     <?php include 'include/footer.php'; ?>
@@ -291,14 +348,14 @@ $sampleData = [
 
         function toggleCategory(selectedCategory) {
             // Toggle the selected category
-            if (selectedCategory === "all") {
-                activeCategories = ["all"];
+            if (selectedCategory === "ทั้งหมด") {
+                activeCategories = ["ทั้งหมด"];
             } else {
                 if (activeCategories.includes(selectedCategory)) {
                     activeCategories = activeCategories.filter(cat => cat !== selectedCategory); // Remove if already selected
                 } else {
                     if (activeCategories.includes("all")) {
-                        activeCategories = [selectedCategory]; // Replace "all" with specific categories
+                        activeCategories = [selectedCategory]; // Replace "ทั้งหมด" with specific categories
                     } else {
                         activeCategories.push(selectedCategory); // Add new category
                     }
@@ -307,6 +364,22 @@ $sampleData = [
 
             updateCategoryButtons();
             filterData();
+        }
+
+        function toggleAllMenus() {
+            const selectAllCheckbox = document.getElementById('selectAllMenus');
+            const menuCheckboxes = document.querySelectorAll('.menuCheckbox');
+
+            menuCheckboxes.forEach(checkbox => {
+                checkbox.checked = selectAllCheckbox.checked;
+            });
+
+            // Update "ทั้งหมด" ในแต่ละ category
+            const categorySelectAllCheckboxes = document.querySelectorAll('input[id$="SelectAll"]');
+            categorySelectAllCheckboxes.forEach(categoryCheckbox => {
+                categoryCheckbox.checked = selectAllCheckbox.checked;
+                categoryCheckbox.indeterminate = false;
+            });
         }
 
         function updateCategoryButtons() {
@@ -343,7 +416,7 @@ $sampleData = [
 
             // กรองแถว (Rows) ตาม Table และ วันที่
             rows.forEach(row => {
-                const matchesTable = (selectedTable === 'all' || row.classList.contains(selectedTable)); // ตรวจสอบโต๊ะ
+                const matchesTable = (selectedTable === 'เลือกทั้งหมด' || row.classList.contains(selectedTable)); // ตรวจสอบโต๊ะ
                 const timeStampCell = row.children[row.children.length - 2]; // คอลัมน์ "Time Stamp"
                 // ตรวจสอบและแปลงค่า Time Stamp เป็นวันที่เท่านั้น (YYYY-MM-DD)
                 const rowDate = new Date(timeStampCell.textContent).toISOString().split('T')[0];
