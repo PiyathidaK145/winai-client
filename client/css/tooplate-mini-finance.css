@@ -431,10 +431,11 @@ strong {
   min-width: 240px;
   padding-top: 15px;
   padding-bottom: 15px;
+  color: #000000;
 }
 
 .dropdown-toggle {
-  width: 32px;
+  width: auto;
 }
 
 .dropdown-toggle .start-100 {
@@ -919,7 +920,7 @@ strong {
 }
 
 .form-check-label {
-  color: var(--p-color);
+  color: black;
 }
 
 .custom-form .form-control:hover,
